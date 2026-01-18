@@ -68,16 +68,14 @@
   align-items: center;
   gap: 6px;
   padding: 10px;
-  border-radius: 8px;
   background: transparent;
-  border: 1px solid transparent;
+  border: none;
   transition: all var(--transition-base);
   cursor: pointer;
 }
 
 .hamburger:hover {
   background: transparent;
-  border-color: transparent;
 }
 
 .hamburger:active {
