@@ -30,7 +30,7 @@ const Contact = () => {
       setIsSubmitting(false)
       setSubmitStatus('success')
       setFormData({ name: '', email: '', organization: '', message: '' })
-      
+
       setTimeout(() => {
         setSubmitStatus(null)
       }, 5000)
@@ -153,7 +153,7 @@ const Contact = () => {
                   <div className="info-icon">📧</div>
                   <div className="info-content">
                     <h3>Email</h3>
-                    <p>info@satyah.com</p>
+                    <p>satyah2019@gmail.com</p>
                   </div>
                 </div>
 
@@ -161,7 +161,7 @@ const Contact = () => {
                   <div className="info-icon">📞</div>
                   <div className="info-content">
                     <h3>Phone</h3>
-                    <p>+1 (555) 123-4567</p>
+                    <p>7875695021 / 9175085911</p>
                   </div>
                 </div>
 
@@ -169,18 +169,12 @@ const Contact = () => {
                   <div className="info-icon">📍</div>
                   <div className="info-content">
                     <h3>Office</h3>
-                    <p>123 Research Avenue<br />Suite 500<br />City, State 12345</p>
+                    <p>Office No. 2, 1 st floor, Shree Sadashiv Hsg. Society, Above Shravan Hotel, Ferguson college Road, Model Colony, Pune - 41101</p>
                   </div>
                 </div>
               </div>
 
-              <div className="map-placeholder">
-                <div className="map-content">
-                  <span className="map-icon">🗺️</span>
-                  <p>Interactive Map</p>
-                  <p className="map-note">Map integration available</p>
-                </div>
-              </div>
+              {/* Map Removed as requested */}
             </motion.div>
           </div>
         </div>

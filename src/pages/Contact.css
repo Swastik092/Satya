@@ -31,6 +31,10 @@
   color: var(--color-text-light);
   line-height: 1.6;
   transition: color var(--transition-theme);
+  text-align: center;
+  margin: 0 auto;
+  max-width: 600px;
+  /* Ensure nice wrapping width */
 }
 
 .contact-content {
@@ -42,7 +46,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-xl);
-  align-items: flex-start;
+  align-items: center;
+  /* Centered vertically against form */
 }
 
 .contact-form-container {

@@ -29,18 +29,34 @@ const Hero = () => {
     visible: { transition: { staggerChildren: 0.15 } }
   }
 
-  // Floating animation variant for math symbols
-  const floatContinuous = (duration) => ({
-    y: [0, -40, 0],
-    x: [0, 15, 0],
-    opacity: [0.04, 0.08, 0.04],
+  // Infinite lifecycle animation: Fade In -> Immediate Fade Out (No Stay) -> Safety Buffer
+  const equationAnim = (duration, delay) => ({
+    scale: [0.8, 1.1, 1.2],
+    opacity: [0, 1, 0, 0], // Peak at 1 then immediately fade out
+    filter: ["blur(4px)", "blur(0px)", "blur(4px)", "blur(4px)"],
+    y: [0, -40, -40],
     transition: {
       duration: duration,
+      delay: delay,
       repeat: Infinity,
       ease: "easeInOut",
-      times: [0, 0.5, 1]
+      times: [0, 0.2, 0.9, 1] // 20% In, 70% Slow Fade Out, 10% Buffer
     }
   })
+
+  const equations = [
+    { id: 1, text: "∫ f(x) dx", top: "20%", left: "10%", duration: 13, delay: 0 },
+    { id: 2, text: "Σ n⁻² = π²/6", top: "50%", left: "40%", duration: 17, delay: 2 },
+    { id: 3, text: "e^{iπ} + 1 = 0", top: "30%", right: "10%", duration: 19, delay: 5 },
+    { id: 4, text: "∇ ⋅ E = ρ/ε₀", top: "70%", left: "20%", duration: 15, delay: 1 },
+    { id: 5, text: "d/dx(eˣ) = eˣ", top: "60%", right: "20%", duration: 16, delay: 8 },
+    { id: 6, text: "x = [-b ± √(b²-4ac)] / 2a", top: "15%", right: "30%", duration: 21, delay: 4 },
+    { id: 7, text: "f'(x) = lim(h→0) [f(x+h)-f(x)]/h", top: "80%", right: "0%", duration: 23, delay: 7 },
+    // New equations for density & seamless loop
+    { id: 8, text: "E = mc²", top: "40%", left: "5%", duration: 14, delay: 3 },
+    { id: 9, text: "F = G(m₁m₂)/r²", top: "10%", right: "5%", duration: 25, delay: 9 },
+    { id: 10, text: "i² = -1", top: "85%", left: "30%", duration: 18, delay: 6 }
+  ]
 
   return (
     <section className="hero" ref={heroRef}>
@@ -76,7 +92,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Ambient Math Visuals */}
+          {/* Right Column: Mathematical Floating Equations */}
           <motion.div
             className="hero-visual"
             initial={{ opacity: 0 }}
@@ -85,36 +101,20 @@ const Hero = () => {
             style={{ y: yMath }}
           >
             <div className="math-ambient-container">
-              <motion.div
-                className="math-symbol s1"
-                animate={floatContinuous(18)}
-              >
-                ∫ f(x) dx
-              </motion.div>
-              <motion.div
-                className="math-symbol s2"
-                animate={floatContinuous(25)}
-              >
-                ∑ (xᵢ - x̄)²
-              </motion.div>
-              <motion.div
-                className="math-symbol s3"
-                animate={floatContinuous(22)}
-              >
-                P(A|B)
-              </motion.div>
-              <motion.div
-                className="math-symbol s4"
-                animate={floatContinuous(30)}
-              >
-                y = β₀ + β₁x + ε
-              </motion.div>
-              <motion.div
-                className="math-symbol s5"
-                animate={floatContinuous(20)}
-              >
-                lim(x→∞)
-              </motion.div>
+              {equations.map((eq) => (
+                <motion.div
+                  key={eq.id}
+                  className="math-equation"
+                  style={{
+                    top: eq.top,
+                    left: eq.left,
+                    right: eq.right
+                  }}
+                  animate={equationAnim(eq.duration, eq.delay)}
+                >
+                  {eq.text}
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>

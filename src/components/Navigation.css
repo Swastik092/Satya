@@ -225,7 +225,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: transparent;
+  /* Removed darker overlay per user request */
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 998;
@@ -287,4 +288,38 @@
   padding-top: 2rem;
   display: flex;
   justify-content: flex-start;
+}
+
+/* Close Button */
+.menu-close-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-navy);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1002;
+}
+
+[data-theme="dark"] .menu-close-button {
+  color: var(--color-off-white);
+}
+
+.menu-close-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: rotate(90deg);
+  color: var(--color-professional-blue);
+}
+
+[data-theme="dark"] .menu-close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-professional-blue-light);
 }

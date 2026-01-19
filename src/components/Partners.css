@@ -1,7 +1,8 @@
 .partners {
-  background: transparent !important;
-  /* Allow unified background to show */
+  background: linear-gradient(to bottom, #D0E4F0 0%, var(--color-bg-secondary) 100%);
+  /* Stronger Sky Blue -> White Fade */
   transition: background-color var(--transition-theme);
+  padding-bottom: var(--spacing-md);
 }
 
 .partners-header {
