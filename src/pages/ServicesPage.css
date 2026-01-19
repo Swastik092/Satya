@@ -64,12 +64,18 @@
    HERO SECTION
    ============================================ */
 
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
 .services-hero {
   position: relative;
-  padding: 120px 0 60px;
+  padding: 120px 0 80px;
+  /* Increased bottom padding to 80px */
   background: transparent;
   z-index: 2;
-  text-align: left;
+  text-align: center;
+  /* Center aligned */
 }
 
 .page-title {
@@ -87,6 +93,7 @@
   font-size: 1.25rem;
   color: var(--color-text-muted);
   max-width: 600px;
+  margin: 0 auto;
   line-height: 1.6;
 }
 
@@ -117,45 +124,48 @@
   position: relative;
   width: 100%;
   cursor: pointer;
-  /* Indicates interaction */
+  overflow: hidden;
+  /* Ensure content stays inside */
+  border-radius: 16px;
+  height: 100%;
+  /* Ensure uniform height */
 }
 
 .service-panel-media {
   position: relative;
   width: 100%;
-  height: 400px;
-  /* Reduced height for better viewport fit */
+  height: 450px;
+  /* Slightly taller */
   border-radius: 16px;
-  /* Increased radius for modern feel */
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-  /* Minimal shadow at rest */
   background: #000;
   transition: box-shadow 0.4s ease;
 }
 
 .detailed-service-panel:hover .service-panel-media {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .service-panel-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-  filter: none !important;
-  /* STRICTLY NO FILTERS */
-  opacity: 0.9;
-  /* Slight dim just for base contrast, or 1 if video is dark enough */
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease, opacity 0.5s ease;
+  filter: none;
+  opacity: 1;
 }
 
-/* Very subtle scale on hover */
+/* Blur and Darken Background on Hover */
 .detailed-service-panel:hover .service-panel-video {
-  transform: scale(1.03);
+  filter: blur(8px) brightness(0.6);
+  /* Stronger contrast */
+  transform: scale(1.05);
+  /* Subtle scale */
 }
 
 /* ============================================
-   GRADIENT WASH (Atmospheric Text Layer)
+   GRADIENT WASH
    ============================================ */
 
 .service-panel-wash {
@@ -163,31 +173,20 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 70%;
-  /* Covers bottom portion only */
+  height: 100%;
   background: linear-gradient(to bottom,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.4) 30%,
-      rgba(0, 0, 0, 0.85) 80%,
-      rgba(0, 0, 0, 0.95) 100%);
-  z-index: 1;
-  transition: opacity 0.4s ease;
-  opacity: 0.9;
-  /* Stronger base opacity for legibility */
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.85) 90%);
+  /* Subtle bottom shade for text legibility */
   pointer-events: none;
-  /* Let clicks pass through */
+  z-index: 1;
+  transition: opacity 0.5s ease;
 }
 
 .detailed-service-panel:hover .service-panel-wash {
-  opacity: 1;
-  /* Slightly expand gradient up on hover for more text room */
-  height: 85%;
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.5) 30%,
-      rgba(0, 0, 0, 0.9) 80%,
-      rgba(0, 0, 0, 1) 100%);
-  transition: all 0.5s ease;
+  opacity: 0.6;
+  /* Let video blur take over somewhat */
 }
 
 /* ============================================
@@ -196,135 +195,207 @@
 
 .service-explore-content {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  padding: var(--spacing-xl);
+  height: 100%;
+  padding: 40px;
+  /* 40px Padding */
   z-index: 2;
-  color: white;
-  /* Always white on video */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  /* Align bottom */
+  align-items: flex-start;
+  /* Left Align */
 }
 
-/* Layer 1: Title Group (The Anchor) */
-.explore-header-group {
-  margin-bottom: var(--spacing-md);
-  transform-origin: left bottom;
-  /* Text shadow for extra pop against video */
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
+.content-slide-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Gap handled by margins */
 }
 
-.context-label {
-  display: block;
-  font-family: var(--font-primary);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.85);
-  /* Increased contrast */
-  margin-bottom: 8px;
-  font-weight: 700;
-  /* Bolder */
-}
-
-.explore-title {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  /* Pure white */
-  margin: 0;
-  line-height: 1.1;
-}
-
-.explore-divider {
-  width: 40px;
-  height: 2px;
-  background-color: var(--color-professional-blue);
-  margin-top: 16px;
-  opacity: 1;
-  /* Solid visual anchor */
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Layer 2: Description (The Insight) */
-.explore-body-container {
+/* 1. CAPABILITY TAG */
+.explore-tag-wrapper {
   overflow: hidden;
 }
 
-.explore-description {
-  font-family: var(--font-primary);
-  font-size: 1.05rem;
-  line-height: 1.8;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.95);
-  /* High legibility */
-  margin-bottom: var(--spacing-lg);
-  max-width: 95%;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  /* Shadow for readability */
+.explore-subtitle-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 4px;
 }
 
-/* Layer 3: Features (The Detail) */
-.explore-features {
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  /* Clearer separator */
-  padding-top: var(--spacing-md);
+/* 2. MAIN TITLE */
+.explore-header-group {
+  margin: 0;
+  transform-origin: left bottom;
+}
+
+.explore-title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* 3. DESCRIPTION & TAGS */
+.explore-body-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+.explore-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 85%;
+  /* 85% width constraint */
+  font-weight: 400;
+  margin-bottom: 24px;
 }
 
 .features-labels-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   list-style: none;
   padding: 0;
 }
 
 .feature-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 500;
   text-transform: uppercase;
-  /* Small caps feel */
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(0, 0, 0, 0.4);
-  /* Darker backing for legibility */
-  padding: 4px 10px;
-  border-radius: 2px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 6px 14px;
+  border-radius: 50px;
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
-.detailed-service-panel:hover .feature-label {
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  border-color: rgba(255, 255, 255, 0.3);
+.detailed-service-panel:hover .feature-label:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 /* ============================================
-   CTA SECTION
+   CTA SECTION (High Impact Redesign)
    ============================================ */
 
+.services-cta {
+  background-color: var(--color-navy);
+  /* Deep Navy Background */
+  padding: 120px 0;
+  /* Increased vertical padding */
+  margin-top: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: Add a subtle blurred circle behind for depth if desired, 
+   but user asked for Deep Navy or dark blurred hero grid. 
+   Solid Deep Navy is cleaner as a "Strong Visual Anchor". */
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
 .cta-title {
-  color: var(--color-navy);
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  /* Text-5xl approx */
+  font-weight: 700;
+  margin-bottom: 0;
+  letter-spacing: -0.02em;
 }
 
 .cta-text {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.cta-button-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #ffffff;
+  /* Pure White */
+  color: var(--color-navy);
+  /* Deep Navy Text */
+  padding: 16px 48px;
+  /* px-10 py-4 approx */
+  border-radius: 9999px;
+  /* Pill shape */
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  /* Subtle glowing outer shadow */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-button-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  /* Intensify glow */
+  background-color: #ffffff;
+}
+
+.cta-button-arrow {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-weight: 700;
+}
+
+.cta-button-large:hover .cta-button-arrow {
+  transform: translateX(6px);
+  /* Slide right */
 }
 
 /* ============================================
    DARK MODE OVERRIDES
    ============================================ */
 
-[data-theme="dark"] .page-title,
-[data-theme="dark"] .cta-title {
-  color: var(--color-off-white);
+[data-theme="dark"] .services-cta {
+  background-color: var(--color-navy-dark);
+  /* Ensure it stays dark/navy in dark mode */
 }
+
+[data-theme="dark"] .cta-title {
+  color: #ffffff;
+  /* Keep white */
+}
+
 
 [data-theme="dark"] .service-panel-media {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);

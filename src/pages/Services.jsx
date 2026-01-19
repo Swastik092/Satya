@@ -27,34 +27,31 @@ const ServicesPage = () => {
 
   // 3-Layer Progressive Reveal Variants
 
-  // Layer 1: Title (Always visible, clean, subtle shift on hover)
+  // 3-Layer Interactive Slide-Up Variants
+
+  // Layer 1: Title (Moves from bottom to top)
   const titleVariant = {
-    rest: { y: 0, opacity: 0.9 },
+    rest: { y: 0 },
     hover: {
-      y: -5,
-      opacity: 1,
-      transition: { duration: 0.4, ease: "easeOut" }
+      y: -80, // Slide up to make room
+      transition: { duration: 0.5, ease: "easeOut" }
     }
   }
 
-  // Layer 2: Description (Fades in on hover)
-  const descriptionVariant = {
-    rest: { opacity: 0, y: 10, height: 0 },
+  // Layer 2 & 3: Description & Features (Reveal from bottom)
+  const contentVariant = {
+    rest: {
+      opacity: 0,
+      y: 20,
+      height: 0,
+      display: "none" // Keep hidden from layout to position title at absolute bottom if needed, or just handle via layout
+    },
     hover: {
-      opacity: 0.9,
-      y: 0,
+      opacity: 1,
+      y: -80, // Follow title up
       height: "auto",
-      transition: { duration: 0.5, delay: 0.1, ease: "easeOut" }
-    }
-  }
-
-  // Layer 3: Features (Fades in deeper, acts as metadata)
-  const featuresVariant = {
-    rest: { opacity: 0, y: 10 },
-    hover: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, delay: 0.3, ease: "easeOut" }
+      display: "block",
+      transition: { duration: 0.5, ease: "easeOut" }
     }
   }
 
@@ -67,25 +64,46 @@ const ServicesPage = () => {
       features: ['Qualitative Design', 'Meta-Analyses', 'Primary Data', 'Statistical Analysis'],
     },
     {
-      title: 'Data Collection',
+      title: 'Data Collection & Analysis',
       videoUrl: '/videos/data-collection.mp4',
       description:
         'Systematic data gathering and advanced analytical techniques to transform raw information into actionable intelligence.',
       features: ['Survey Design', 'Focus Groups', 'Data Mining', 'Visualization'],
     },
     {
-      title: 'Consultancy',
+      title: 'Consultancy Services',
       videoUrl: '/videos/consultancy.mp4',
       description:
         'Expert guidance and strategic consulting to help organizations navigate complex challenges and opportunities.',
       features: ['Strategic Planning', 'Optimization', 'Process Improvement', 'Change Management'],
     },
     {
-      title: 'Sustainability',
+      title: 'Sustainable Development Research',
       videoUrl: '/videos/sustainability.mp4',
       description:
         'Evidence-based research focused on creating sustainable solutions for long-term environmental and social impact.',
       features: ['Impact Assessments', 'ESG Analysis', 'Climate Adaptation', 'SDG Alignment'],
+    },
+    {
+      title: 'Agri-Economic Research',
+      videoUrl: '/videos/agri-econ.mp4',
+      description:
+        'Comprehensive analysis of agricultural markets, value chains, and policy impacts to drive rural economic growth.',
+      features: ['Market Analysis', 'Policy Impact', 'Crop Economics', 'Supply Chain'],
+    },
+    {
+      title: 'Socio-Economic Research',
+      videoUrl: '/videos/socio-econ.mp4',
+      description:
+        'Studying the intersection of social factors and economic outcomes to empower communities and inform public policy.',
+      features: ['Demographics', 'Social Impact', 'Inequality Studies', 'Community Dev'],
+    },
+    {
+      title: 'Educational Economics',
+      videoUrl: '/videos/edu-econ.mp4',
+      description:
+        'Evidence-based research on educational resource allocation, school performance, and human capital development.',
+      features: ['Resource Mapping', 'Policy Evaluation', 'Skill Gap Analysis', 'ROI in Ed'],
     },
     {
       title: 'Strategic Planning',
@@ -95,7 +113,7 @@ const ServicesPage = () => {
       features: ['Competitive Analysis', 'Roadmap Development', 'KPI Definition', 'Implementation'],
     },
     {
-      title: 'Monitoring (M&E)',
+      title: 'Monitoring And Evaluation',
       icon: '📋',
       videoUrl: '/videos/me.mp4',
       description:
@@ -151,37 +169,51 @@ const ServicesPage = () => {
                   >
                     <source src={service.videoUrl} type="video/mp4" />
                   </video>
-                  {/* Subtle Gradient Wash - Always present for depth */}
+                  {/* Use a darker wash on hover if needed via CSS */}
                   <div className="service-panel-wash" />
 
                   {/* Interactive Content Layer */}
                   <div className="service-explore-content">
-                    {/* Layer 1: Title Group (The Anchor) */}
-                    <motion.div
-                      className="explore-header-group"
-                      variants={titleVariant}
-                    >
-                      <span className="context-label">Capability</span>
-                      <h2 className="explore-title">
-                        {service.title}
-                      </h2>
-                      <div className="explore-divider" />
-                    </motion.div>
+                    {/* Content Wrapper */}
+                    <motion.div className="content-slide-wrapper">
 
-                    {/* Layer 2: Description (Reveal on Hover) */}
-                    <div className="explore-body-container">
-                      <motion.p
-                        className="explore-description"
-                        variants={descriptionVariant}
-                      >
-                        {service.description}
-                      </motion.p>
-
-                      {/* Layer 3: Features (Reveal Deeper) */}
+                      {/* 1. CAPABILITY TAG (Reveals on Hover) */}
                       <motion.div
-                        className="explore-features"
-                        variants={featuresVariant}
+                        className="explore-tag-wrapper"
+                        variants={{
+                          rest: { height: 0, opacity: 0, marginBottom: 0 },
+                          hover: {
+                            height: "auto",
+                            opacity: 1,
+                            marginBottom: 16,
+                            transition: { duration: 0.4, ease: "easeOut" }
+                          }
+                        }}
                       >
+                        <span className="explore-subtitle-label">CAPABILITY</span>
+                      </motion.div>
+
+                      {/* 2. MAIN TITLE (Always Visual Anchor) */}
+                      <motion.div className="explore-header-group">
+                        <h2 className="explore-title">{service.title}</h2>
+                      </motion.div>
+
+                      {/* 3. DESCRIPTION & TAGS (Reveals on Hover) */}
+                      <motion.div
+                        className="explore-body-container"
+                        variants={{
+                          rest: { height: 0, opacity: 0 },
+                          hover: {
+                            height: "auto",
+                            opacity: 1,
+                            transition: { duration: 0.5, ease: "easeOut" }
+                          }
+                        }}
+                      >
+                        <p className="explore-description">
+                          {service.description}
+                        </p>
+
                         <ul className="features-labels-list">
                           {service.features.map((feature, idx) => (
                             <li key={idx} className="feature-label">
@@ -190,7 +222,8 @@ const ServicesPage = () => {
                           ))}
                         </ul>
                       </motion.div>
-                    </div>
+
+                    </motion.div>
                   </div>
                 </div>
               </motion.article>

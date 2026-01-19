@@ -25,16 +25,34 @@ const Contact = () => {
     setIsSubmitting(true)
     setSubmitStatus(null)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe33ccrXB8T1h_p6Igb9we1jPr3M1Sy-YbJClcQamrxTBTa5g/formResponse'
+
+    try {
+      const formBody = new FormData()
+      formBody.append('entry.1362376038', formData.name) // Name
+      formBody.append('entry.876053468', formData.email) // Email
+      formBody.append('entry.1723727918', formData.organization) // Organization
+      formBody.append('entry.1851143460', formData.message) // Message
+
+      await fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formBody,
+      })
+
+      // With no-cors, we can't check response.ok, so we assume success if no error is thrown
       setSubmitStatus('success')
       setFormData({ name: '', email: '', organization: '', message: '' })
 
       setTimeout(() => {
         setSubmitStatus(null)
       }, 5000)
-    }, 1500)
+    } catch (error) {
+      console.error('Form submission failed:', error)
+      setSubmitStatus('error') // Optional: Handle error state if needed, though user didn't explicitly ask for UI change on error
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -124,7 +142,7 @@ const Contact = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                   >
-                    Thank you! Your message has been sent successfully.
+                    Message sent successfully!
                   </motion.div>
                 )}
 

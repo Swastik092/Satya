@@ -47,7 +47,7 @@ const Navigation = () => {
         {/* LEFT: Logo Section */}
         <Link to="/" className="nav-logo" onClick={() => window.scrollTo(0, 0)}>
           <Logo size={42} /> {/* Slightly larger logo icon */}
-          <span className="logo-text">SATYAH RESEARCH</span>
+          <span className="logo-text">SATYAH<span className="logo-text-suffix"> RESEARCH</span></span>
         </Link>
 
         {/* RIGHT: Desktop Navigation & Actions */}

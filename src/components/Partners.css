@@ -1,3 +1,7 @@
+/* ============================================
+   PARTNERS & CLIENTS (Original / Dedicated Page)
+   ============================================ */
+
 .partners {
   background: linear-gradient(to bottom, #D0E4F0 0%, var(--color-bg-secondary) 100%);
   /* Stronger Sky Blue -> White Fade */
@@ -143,6 +147,8 @@
   justify-content: center;
   padding: var(--spacing-md);
   pointer-events: none;
+  width: 100%;
+  height: 100%;
 }
 
 .modal {
@@ -160,8 +166,8 @@
 
 .modal-close {
   position: absolute;
-  top: var(--spacing-sm);
-  right: var(--spacing-sm);
+  top: 16px;
+  right: 16px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -188,13 +194,6 @@
 [data-theme="dark"] .modal-close:hover {
   background: var(--color-professional-blue-light);
   box-shadow: 0 4px 16px rgba(90, 138, 154, 0.5);
-}
-
-.modal-close:hover {
-  background: var(--color-professional-blue);
-  color: white;
-  transform: rotate(90deg);
-  border-color: var(--color-professional-blue);
 }
 
 .modal-content {
@@ -257,22 +256,16 @@
   .partner-card {
     padding: var(--spacing-sm);
     min-width: 140px;
-    /* Reduced specific size for mobile */
     max-width: 160px;
     flex: 0 0 auto;
-    /* Ensure no shrinking/growing */
   }
 
-  /* Specific Mobile Marquee Adjustments */
   .partners-marquee-track {
     gap: 1rem;
-    /* Reduced to 16px */
-    /* Reduced gap */
   }
 
   .partners-marquee-wrapper {
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    /* Slightly tighter transparency on smaller screens */
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   }
 
@@ -288,4 +281,321 @@
   .modal-content {
     padding: var(--spacing-md);
   }
+}
+
+/* ============================================
+   SHARED CARD STYLES (Unified Aesthetic)
+   ============================================ */
+
+/* Common base for both variants */
+.partners-home .partner-card,
+.partners-dedicated .partner-card {
+  background: rgba(255, 255, 255, 0.7);
+  /* Frosted Glass */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* 1px White Border */
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  /* Soft ambient shadow */
+
+  /* Exact Square Dimensions */
+  width: 240px;
+  height: 240px;
+  min-width: 240px;
+  max-width: 240px;
+
+  padding: 0;
+  /* Content padding handled by logo container */
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.partners-home .partner-card:hover,
+.partners-dedicated .partner-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  /* Slightly stronger shadow on hover */
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Logo Styling - Centered with Padding */
+.partners-home .partner-logo,
+.partners-dedicated .partner-logo {
+  width: 100%;
+  height: 100%;
+  padding: 20%;
+  /* 20% Internal Padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.partners-home .partner-logo img,
+.partners-dedicated .partner-logo img {
+  width: 100%;
+  /* Take up available space inside padding */
+  height: 100%;
+  object-fit: contain;
+  /* Contain */
+  transform: none;
+  /* Reset any scale */
+  filter: none;
+  opacity: 1;
+  transition: transform 0.3s ease;
+}
+
+.partners-home .partner-card:hover .partner-logo img,
+.partners-dedicated .partner-card:hover .partner-logo img {
+  transform: scale(1.05);
+  /* Subtle zoom on hover */
+}
+
+.partners-home .partner-logo svg,
+.partners-dedicated .partner-logo svg {
+  display: none;
+}
+
+/* Hide card names on cards (as per design, likely titles are for modal) */
+.partners-home .partner-name,
+.partners-dedicated .partner-name {
+  display: none;
+}
+
+
+/* ============================================
+   HOME PAGE VARIANT (Full Edge-to-Edge Slider)
+   ============================================ */
+
+.partners-home {
+  background: transparent;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin-top: 0;
+  border-top: none;
+  width: 100%;
+  overflow: hidden;
+  /* Prevent horizontal scrollbar on body */
+}
+
+/* Override container for full width marquee */
+.partners-home .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header needs to be constrained though */
+.partners-home .partners-header {
+  margin-bottom: 80px;
+  padding: 0 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.partners-home .partners-subheading {
+  font-family: 'Space Grotesk', 'Montserrat', 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #1E293B;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.partners-home .partners-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #64748B;
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+/* Full Width Marquee - No Masks */
+.partners-home .partners-marquee-wrapper {
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.partners-home .partners-marquee-track {
+  gap: 48px;
+  padding: 20px 0;
+  /* Use wrapper padding mostly, keep track clean */
+}
+
+/* ============================================
+   DEDICATED PAGE VARIANT (Stable Grid)
+   ============================================ */
+
+.partners-dedicated {
+  background: transparent;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.partners-dedicated .partners-header {
+  margin-bottom: 80px;
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.partners-dedicated .partners-subheading {
+  font-family: 'Space Grotesk', 'Montserrat', 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #1E293B;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.partners-dedicated .partners-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #64748B;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* Grid Wrapper */
+.partners-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  /* Match card width approx */
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-items: center;
+  padding: 0 20px;
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .partners-home .partner-card,
+[data-theme="dark"] .partners-dedicated .partner-card {
+  background: rgba(255, 255, 255, 0.05);
+  /* Light glass */
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .partners-home .partner-card:hover,
+[data-theme="dark"] .partners-dedicated .partner-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .partners-home .partners-subheading,
+[data-theme="dark"] .partners-dedicated .partners-subheading {
+  color: #E2E8F0;
+}
+
+[data-theme="dark"] .partners-home .partners-label,
+[data-theme="dark"] .partners-dedicated .partners-label {
+  color: #94A3B8;
+}
+
+/* ============================================
+   MODAL CLEANUP & STYLING
+   ============================================ */
+
+.modal-content {
+  padding: var(--spacing-xl);
+  text-align: center;
+  /* Centered content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-logo {
+  height: 120px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-logo img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.modal-title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  /* Requested Font */
+  font-size: 1.75rem;
+  font-weight: 600;
+  /* Semi-Bold */
+  color: var(--color-navy);
+  margin-bottom: var(--spacing-sm);
+}
+
+.modal-project {
+  font-size: 1.1rem;
+  color: var(--color-professional-blue);
+  margin-bottom: var(--spacing-md);
+  font-weight: 500;
+}
+
+.modal-description {
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  /* Center aligned */
+  max-width: 90%;
+}
+
+.modal-impact {
+  width: 100%;
+  padding: 20px;
+  background: rgba(239, 246, 255, 0.8);
+  /* Soft blue highlight (e.g., blue-50) */
+  border-radius: 12px;
+  color: var(--color-text);
+  text-align: center;
+  /* Center aligned */
+  border-left: none;
+  /* Remove side border */
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  /* Subtle blue border */
+}
+
+/* Dark mode modal overrides */
+[data-theme="dark"] .modal-impact {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .modal-title {
+  color: #fff;
 }

@@ -7,7 +7,7 @@ const Home = () => {
     <>
       <Hero />
       <div className="unified-section">
-        <Partners />
+        <Partners isHomePage={true} />
         <Services />
       </div>
     </>

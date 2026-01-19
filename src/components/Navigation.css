@@ -323,3 +323,10 @@
   background: rgba(255, 255, 255, 0.1);
   color: var(--color-professional-blue-light);
 }
+
+/* Mobile Nav Text Optimization */
+@media (max-width: 768px) {
+  .logo-text-suffix {
+    display: none;
+  }
+}

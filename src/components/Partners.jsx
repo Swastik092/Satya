@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Partners.css'
 
+
 const partners = [
   {
     id: 1,
@@ -45,63 +46,214 @@ const partners = [
   },
 ]
 
-const Partners = () => {
+// Simple SVG Icons for Home Page Variant
+const HomeIcons = {
+  Institute: () => (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21V11a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
+    </svg>
+  ),
+  Earth: () => (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  ),
+  Tech: () => (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+      <path d="M8 21h8M12 17v4" />
+    </svg>
+  ),
+  Health: () => (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+    </svg>
+  ),
+  Network: () => (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  )
+}
+
+// Real Partners for Home Page
+const realPartners = [
+  {
+    id: '101',
+    name: 'Gokhale Institute of Politics and Economics',
+    logo: '/partners/GIPE-removebg-preview.png',
+    project: 'Strategic Partnership',
+    description: 'Collaborating on economic policy research and data-driven governance frameworks.',
+    impact: 'Transforming economic education'
+  },
+  {
+    id: '102',
+    name: 'ICRISAT',
+    logo: '/partners/ICIRSAT-removebg-preview.png',
+    project: 'Agricultural Innovation',
+    description: 'Joint research initiatives focused on sustainable agriculture and food security in semi-arid tropics.',
+    impact: 'Empowering dryland farmers'
+  },
+  {
+    id: '103',
+    name: 'ICSSR',
+    logo: '/partners/ICSSR-removebg-preview.png',
+    project: 'Social Science Research',
+    description: 'Supporting interdisciplinary research methodology and policy analysis.',
+    impact: 'Advancing social sciences'
+  },
+  {
+    id: '104',
+    name: 'PhonePe',
+    logo: '/partners/Phonepe logo.png',
+    project: 'Digital Payments Ecosystem',
+    description: 'Analyzing market trends and consumer behavior in the digital payments sector.',
+    impact: 'Revolutionizing digital transactions'
+  },
+  {
+    id: '105',
+    name: 'Savitribai Phule Pune University',
+    logo: '/partners/Savitribai_Phule_Pune_University-removebg-preview.png',
+    project: 'Academic Excellence',
+    description: 'Partnership for curriculum development and advanced research programs.',
+    impact: 'Fostering future leaders'
+  },
+  {
+    id: '106',
+    name: 'Symbiosis International University',
+    logo: '/partners/Symbiosis-removebg-preview.png',
+    project: 'International Collaboration',
+    description: 'Facilitating global exchange programs and cross-border research initiatives.',
+    impact: 'Bridging global education'
+  },
+  {
+    id: '107',
+    name: 'World Bank Group',
+    logo: '/partners/WORLD_BANK_GROUP-removebg-preview.png',
+    project: 'Global Development',
+    description: 'Working together on poverty reduction strategies and sustainable development goals.',
+    impact: 'Driving global change'
+  },
+]
+
+const Partners = ({ isHomePage = false }) => {
   const [selectedPartner, setSelectedPartner] = useState(null)
 
   const openModal = (partner) => {
-    setSelectedPartner(partner)
+    // Only open modal if there is description/impact data (might need to add this later for real partners)
+    if (partner.description) {
+      setSelectedPartner(partner)
+    }
   }
 
   const closeModal = () => {
     setSelectedPartner(null)
   }
 
-  return (
-    <section className="partners section">
-      <div className="container">
-        <motion.div
-          className="partners-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="section-title">Our Partners & Clients</h2>
-          <p className="section-subtitle">
-            Trusted by leading organizations worldwide
-          </p>
-        </motion.div>
+  // Use real partners globally now
+  const displayPartners = realPartners
 
-        <div className="partners-marquee-wrapper">
+  return (
+    <section id="partners" className={`partners section ${isHomePage ? 'partners-home' : 'partners-dedicated'}`}>
+      <div className="container">
+        {isHomePage ? (
+          // Home Page Header
           <motion.div
-            className="partners-marquee-track"
+            className="partners-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            {/* First Set */}
-            {partners.map((partner) => (
-              <motion.div
-                key={`original-${partner.id}`}
-                className="partner-card"
-                whileHover={{ scale: 1.05, borderColor: "var(--color-professional-blue)" }}
-                onClick={() => openModal(partner)}
-              >
-                <div className="partner-logo">{partner.logo}</div>
-                <h3 className="partner-name">{partner.name}</h3>
-              </motion.div>
-            ))}
-            {/* Duplicate Set for Seamless Loop */}
-            {partners.map((partner) => (
-              <motion.div
-                key={`duplicate-${partner.id}`}
-                className="partner-card"
-                whileHover={{ scale: 1.05, borderColor: "var(--color-professional-blue)" }}
-                onClick={() => openModal(partner)}
-              >
-                <div className="partner-logo">{partner.logo}</div>
-                <h3 className="partner-name">{partner.name}</h3>
-              </motion.div>
-            ))}
+            <h2 className="partners-subheading">OUR PARTNERS & CLIENTS</h2>
+            <p className="partners-label">Trusted by leading organizations worldwide</p>
           </motion.div>
-        </div>
+        ) : (
+          // Dedicated Page Header (Matching Aesthetic)
+          <motion.div
+            className="partners-header"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="partners-subheading">Our Global Network</h2>
+            <p className="partners-label">Collaborating with world-class institutions</p>
+          </motion.div>
+        )}
+
+        {isHomePage ? (
+          /* ==================== MARQUEE (Home Page) ==================== */
+          <div className="partners-marquee-wrapper">
+            <motion.div
+              className="partners-marquee-track"
+            >
+              {/* First Set */}
+              {displayPartners.map((partner, idx) => (
+                <motion.div
+                  key={`original-${partner.id}`}
+                  className="partner-card"
+                  whileHover={{ scale: 1.02 }}
+                  onClick={() => openModal(partner)}
+                >
+                  <div className="partner-logo">
+                    {typeof partner.logo === 'string' && partner.logo.includes('/') ? (
+                      <img src={partner.logo} alt={partner.name} />
+                    ) : (
+                      partner.logo
+                    )}
+                  </div>
+                  <h3 className="partner-name">{partner.name}</h3>
+                </motion.div>
+              ))}
+              {/* Duplicate Set for Seamless Loop */}
+              {displayPartners.map((partner, idx) => (
+                <motion.div
+                  key={`duplicate-${partner.id}`}
+                  className="partner-card"
+                  whileHover={{ scale: 1.02 }}
+                  onClick={() => openModal(partner)}
+                >
+                  <div className="partner-logo">
+                    {typeof partner.logo === 'string' && partner.logo.includes('/') ? (
+                      <img src={partner.logo} alt={partner.name} />
+                    ) : (
+                      partner.logo
+                    )}
+                  </div>
+                  <h3 className="partner-name">{partner.name}</h3>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        ) : (
+          /* ==================== GRID (Dedicated Page) ==================== */
+          <div className="partners-grid-wrapper">
+            {displayPartners.map((partner, idx) => (
+              <motion.div
+                key={`grid-${partner.id}`}
+                className="partner-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                onClick={() => openModal(partner)}
+              >
+                <div className="partner-logo">
+                  {typeof partner.logo === 'string' && partner.logo.includes('/') ? (
+                    <img src={partner.logo} alt={partner.name} />
+                  ) : (
+                    partner.logo
+                  )}
+                </div>
+                <h3 className="partner-name">{partner.name}</h3>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Centered Modal */}
         <AnimatePresence>
@@ -117,16 +269,22 @@ const Partners = () => {
               <div className="modal-container">
                 <motion.div
                   className="modal"
-                  initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, y: 50 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
                   transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                 >
                   <button className="modal-close" onClick={closeModal}>
                     ×
                   </button>
                   <div className="modal-content">
-                    <div className="modal-logo">{selectedPartner.logo}</div>
+                    <div className="modal-logo">
+                      {typeof selectedPartner.logo === 'string' && selectedPartner.logo.includes('/') ? (
+                        <img src={selectedPartner.logo} alt={selectedPartner.name} />
+                      ) : (
+                        selectedPartner.logo
+                      )}
+                    </div>
                     <h3 className="modal-title">{selectedPartner.name}</h3>
                     <h4 className="modal-project">{selectedPartner.project}</h4>
                     <p className="modal-description">
