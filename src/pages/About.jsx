@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import './About.css'
 
 // Icons for Part C (Pillars)
@@ -132,7 +133,7 @@ const About = () => {
             transition={{ duration: 0.5 }}
           >
             <h2 className="cta-title">Ready to Transform Your Vision?</h2>
-            <a href="/contact" className="cta-button">Get in Touch</a>
+            <Link to="/contact" className="cta-button">Get in Touch</Link>
           </motion.div>
         </div>
       </section>

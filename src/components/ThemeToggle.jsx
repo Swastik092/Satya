@@ -8,8 +8,8 @@ const ThemeToggle = () => {
     if (saved) {
       return saved === 'dark'
     }
-    // Default to dark mode on fresh load
-    return true
+    // Default to light mode as requested
+    return false
   })
 
   useEffect(() => {
@@ -62,15 +62,15 @@ const ThemeToggle = () => {
           ease: 'easeInOut',
         }}
       />
-      
+
       <motion.div
         className="theme-toggle-button"
         animate={{
-          backgroundColor: isDark 
-            ? 'var(--color-navy-light)' 
+          backgroundColor: isDark
+            ? 'var(--color-navy-light)'
             : 'var(--color-off-white)',
-          borderColor: isDark 
-            ? 'var(--color-cyan-blue)' 
+          borderColor: isDark
+            ? 'var(--color-cyan-blue)'
             : 'var(--color-steel-blue)',
         }}
         transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
