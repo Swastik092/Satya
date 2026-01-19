@@ -417,6 +417,35 @@
     height: 450px;
   }
 
+  /* Mobile: When active, allow scrolling if content overflows */
+  .detailed-service-panel.active .service-explore-content {
+    overflow-y: auto;
+    justify-content: flex-start;
+    /* Align top when scrolling might be needed, or keep flex-end? */
+    /* flex-end is better for the "slide up" feel, but if it overflows, flex-end can hide top content. 
+       Let's keep it simple: auto scroll. */
+    padding-bottom: 80px;
+    /* Safe space */
+    pointer-events: auto;
+    /* Ensure touch works */
+  }
+
+  /* Mobile: Ensure the card is tap-friendly */
+  .detailed-service-panel {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* active state styles matching hover for consistency */
+  .detailed-service-panel.active .service-panel-video {
+    filter: blur(8px) brightness(0.6);
+    transform: scale(1.05);
+  }
+
+  .detailed-service-panel.active .service-panel-wash {
+    opacity: 0.6;
+  }
+
   /* On mobile/touch, we might want to show some context continuously or on tap */
   .explore-description,
   .explore-features {

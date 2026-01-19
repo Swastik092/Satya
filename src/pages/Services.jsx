@@ -1,10 +1,12 @@
 import { useRef } from 'react'
+import * as React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import './ServicesPage.css'
 
 const ServicesPage = () => {
   const containerRef = useRef(null)
+  const [activeIndex, setActiveIndex] = React.useState(null) // Track active card for mobile
 
   // Parallax for ambient layers
   const { scrollYProgress } = useScroll({
@@ -25,30 +27,25 @@ const ServicesPage = () => {
     }
   })
 
-  // 3-Layer Progressive Reveal Variants
-
-  // 3-Layer Interactive Slide-Up Variants
-
-  // Layer 1: Title (Moves from bottom to top)
+  // 3-Layer Progressive Reveal Variants (Legacy/Reference if needed, logic handled in render now)
   const titleVariant = {
     rest: { y: 0 },
     hover: {
-      y: -80, // Slide up to make room
+      y: -80,
       transition: { duration: 0.5, ease: "easeOut" }
     }
   }
 
-  // Layer 2 & 3: Description & Features (Reveal from bottom)
   const contentVariant = {
     rest: {
       opacity: 0,
       y: 20,
       height: 0,
-      display: "none" // Keep hidden from layout to position title at absolute bottom if needed, or just handle via layout
+      display: "none"
     },
     hover: {
       opacity: 1,
-      y: -80, // Follow title up
+      y: -80,
       height: "auto",
       display: "block",
       transition: { duration: 0.5, ease: "easeOut" }
@@ -122,6 +119,11 @@ const ServicesPage = () => {
     },
   ]
 
+  // Helper to toggle card on mobile
+  const handleCardClick = (index) => {
+    setActiveIndex(prev => prev === index ? null : index)
+  }
+
   return (
     <div className="services-page" ref={containerRef}>
       {/* Ambient Math Background */}
@@ -154,10 +156,12 @@ const ServicesPage = () => {
             {detailedServices.map((service, index) => (
               <motion.article
                 key={index}
-                className="detailed-service-panel"
+                className={`detailed-service-panel ${activeIndex === index ? 'active' : ''}`}
                 initial="rest"
-                whileHover="hover"
-                animate="rest"
+                whileHover="hover" // Keeps desktop hover working
+                whileTap={{ scale: 0.98 }} // Visual feedback on tap
+                animate={activeIndex === index ? "hover" : "rest"} // Mobile toggle overrides rest
+                onClick={() => handleCardClick(index)} // Toggle state
               >
                 <div className="service-panel-media">
                   <video
@@ -169,15 +173,13 @@ const ServicesPage = () => {
                   >
                     <source src={service.videoUrl} type="video/mp4" />
                   </video>
-                  {/* Use a darker wash on hover if needed via CSS */}
                   <div className="service-panel-wash" />
 
                   {/* Interactive Content Layer */}
                   <div className="service-explore-content">
-                    {/* Content Wrapper */}
                     <motion.div className="content-slide-wrapper">
 
-                      {/* 1. CAPABILITY TAG (Reveals on Hover) */}
+                      {/* 1. CAPABILITY TAG */}
                       <motion.div
                         className="explore-tag-wrapper"
                         variants={{
@@ -193,12 +195,12 @@ const ServicesPage = () => {
                         <span className="explore-subtitle-label">CAPABILITY</span>
                       </motion.div>
 
-                      {/* 2. MAIN TITLE (Always Visual Anchor) */}
+                      {/* 2. MAIN TITLE */}
                       <motion.div className="explore-header-group">
                         <h2 className="explore-title">{service.title}</h2>
                       </motion.div>
 
-                      {/* 3. DESCRIPTION & TAGS (Reveals on Hover) */}
+                      {/* 3. DESCRIPTION & TAGS */}
                       <motion.div
                         className="explore-body-container"
                         variants={{

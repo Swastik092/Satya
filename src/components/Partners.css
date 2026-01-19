@@ -249,6 +249,40 @@
 }
 
 @media (max-width: 768px) {
+
+  /* Typography & Spacing Updates */
+  .partners-home,
+  .partners-dedicated {
+    padding-top: 40px;
+    /* Tighter transition from Hero */
+    padding-bottom: 40px;
+  }
+
+  .partners-home .partners-header,
+  .partners-dedicated .partners-header {
+    margin-bottom: 32px;
+    /* Consistent gap to marquee */
+    padding: 0 16px;
+  }
+
+  .partners-home .partners-subheading,
+  .partners-dedicated .partners-subheading {
+    font-size: 1.5rem;
+    /* ~24px */
+    letter-spacing: 0.1em;
+    /* Maintain spacing */
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .partners-home .partners-label,
+  .partners-dedicated .partners-label {
+    font-size: 0.875rem;
+    /* text-sm */
+    padding: 0 10px;
+  }
+
+  /* Grid & Card Updates */
   .partners-grid {
     gap: var(--spacing-md);
   }
@@ -256,26 +290,53 @@
   .partner-card {
     padding: var(--spacing-sm);
     min-width: 140px;
+    /* Maintain logo fit */
     max-width: 160px;
     flex: 0 0 auto;
+    /* Ensure tap target is good */
+    height: 140px;
+    /* Square on mobile too? Or slightly adjusting height? */
+    /* Previous was 240px square. 140px square is good for mobile. */
+    height: 140px;
+    border-radius: 16px;
   }
 
   .partners-marquee-track {
-    gap: 1rem;
+    gap: 1.5rem;
+    /* Sufficient gap */
   }
 
   .partners-marquee-wrapper {
+    /* Restore masks for mobile if desired, or keep full width. 
+       User didn't explicitly ask for mask return, but "Logo Fit" implies seeing them clearly. 
+       Let's keep the user's previous "remove masks" preference unless screen edge cut-off is ugly.
+       The previous code HAD masks in mobile media query (lines 267-270). 
+       The user request said "Ensure... logos... remain centered... don't appear too small".
+       I will keep the masks as they were in the previous mobile block to avoid regression, 
+       or remove them if the 'Home Page Variant' logic (lines 433) overrides it.
+       Actually, `partners-home` styles at 433 force `mask-image: none`. 
+       If I put masks here, they might conflict or be needed. 
+       Let's stick to the previous state for masks: they were enabled in mobile query. */
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   }
 
   .partner-logo {
     font-size: 2.5rem;
+    /* Fallback for text icons */
+  }
+
+  /* Ensure images in cards are sized correctly for the smaller 140px card */
+  .partners-home .partner-logo,
+  .partners-dedicated .partner-logo {
+    padding: 15%;
+    /* Reduce padding slightly to maximize logo size in smaller card */
   }
 
   .modal {
-    max-width: 100%;
-    margin: var(--spacing-sm);
+    max-width: 90%;
+    /* Ensure it doesn't touch edges */
+    margin: auto;
   }
 
   .modal-content {
