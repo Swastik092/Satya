@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
-import ThemeToggle from './ThemeToggle'
 import './Navigation.css'
 
 const Navigation = () => {
@@ -68,17 +67,10 @@ const Navigation = () => {
           <Link to="/contact" className="nav-cta-button">
             Contact Us
           </Link>
-
-          <div className="nav-desktop-theme">
-            <ThemeToggle />
-          </div>
         </div>
 
         {/* MOBILE: Hamburger & Menu */}
         <div className="nav-mobile-controls">
-          {/* Show Theme Toggle on mobile outside menu for convenience, or inside? 
-               Let's keep it inside based on previous design, or just hamburger here.
-           */}
           <button
             className={`hamburger ${isOpen ? 'active' : ''}`}
             onClick={toggleMenu}
@@ -155,15 +147,6 @@ const Navigation = () => {
                     </button>
                   </motion.li>
                 </ul>
-
-                <motion.div
-                  className="menu-theme-toggle"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <ThemeToggle />
-                </motion.div>
               </motion.nav>
             </>
           )}
