@@ -1,6 +1,7 @@
 import Hero from '../components/Hero'
 import Services from '../components/Services'
 import Partners from '../components/Partners'
+import WhyChooseSatyah from '../components/WhyChooseSatyah'
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <div className="unified-section">
         <Partners isHomePage={true} />
         <Services />
+        <WhyChooseSatyah />
       </div>
     </>
   )
