@@ -2,6 +2,33 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import './Contact.css'
 
+// SVG Icons for Contact Page
+const Icons = {
+  Mail: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+      <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>
+  ),
+  Phone: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  ),
+  MapPin: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </svg>
+  ),
+  Send: () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="22" y1="2" x2="11" y2="13"></line>
+      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+    </svg>
+  )
+}
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -61,9 +88,9 @@ const Contact = () => {
         <div className="container">
           <motion.div
             className="contact-hero-content"
-            initial={{ opacity: 0, y: -100 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.6 }}
           >
             <h1 className="page-title">Contact Us</h1>
             <p className="page-subtitle">
@@ -75,18 +102,19 @@ const Contact = () => {
 
       <section className="contact-content section">
         <div className="container">
-          <div className="contact-grid">
-            <motion.div
-              className="contact-form-container"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="form-title">Get in Touch</h2>
+          <motion.div
+            className="contact-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* LEFT PANE: FORM */}
+            <div className="contact-form-pane">
+              <h2 className="form-title">Send us a Message</h2>
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name">Name *</label>
+                  <label htmlFor="name">Name</label>
                   <input
                     type="text"
                     id="name"
@@ -95,11 +123,12 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="form-input"
+                    placeholder="John Doe"
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email *</label>
+                  <label htmlFor="email">Email</label>
                   <input
                     type="email"
                     id="email"
@@ -108,6 +137,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="form-input"
+                    placeholder="john@example.com"
                   />
                 </div>
 
@@ -120,19 +150,21 @@ const Contact = () => {
                     value={formData.organization}
                     onChange={handleChange}
                     className="form-input"
+                    placeholder="Company or Institute Name"
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Message *</label>
+                  <label htmlFor="message">Message</label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows="6"
+                    rows="5"
                     className="form-textarea"
+                    placeholder="How can we help you?"
                   ></textarea>
                 </div>
 
@@ -150,59 +182,62 @@ const Contact = () => {
                   type="submit"
                   className="form-submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : 'Send Message'} <Icons.Send />
                 </motion.button>
               </form>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="contact-info"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="info-title">Contact Information</h2>
-              <div className="info-items">
-                <div className="info-item">
-                  <div className="info-icon">📧</div>
-                  <div className="info-content">
-                    <h3>Email</h3>
-                    <p>
-                      <a href="mailto:satyah2019@gmail.com" className="contact-link">
+            {/* RIGHT PANE: INFO */}
+            <div className="contact-info-pane">
+              <div className="info-pane-content">
+                <h2 className="info-title">Contact Information</h2>
+                <p className="info-intro">
+                  Ready to start a project? We are here to help you achieve your goals through data-driven insights.
+                </p>
+
+                <div className="info-items">
+                  <div className="info-item">
+                    <div className="info-icon"><Icons.Mail /></div>
+                    <div className="info-details">
+                      <h3>Email</h3>
+                      <a href="mailto:satyah2019@gmail.com" className="contact-link-light">
                         satyah2019@gmail.com
                       </a>
-                    </p>
+                    </div>
+                  </div>
+
+                  <div className="info-item">
+                    <div className="info-icon"><Icons.Phone /></div>
+                    <div className="info-details">
+                      <h3>Phone</h3>
+                      <p>
+                        <a href="tel:7875695021" className="contact-link-light">7875695021</a>
+                        <span className="separator">/</span>
+                        <a href="tel:9175085911" className="contact-link-light">9175085911</a>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="info-item">
+                    <div className="info-icon"><Icons.MapPin /></div>
+                    <div className="info-details">
+                      <h3>Office</h3>
+                      <p>
+                        Office No. 2, 1st Floor, Shree Sadashiv Hsg. Society,
+                        Above Shravan Hotel, Ferguson College Road,
+                        Model Colony, Pune - 41101
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="info-item">
-                  <div className="info-icon">📞</div>
-                  <div className="info-content">
-                    <h3>Phone</h3>
-                    <p>
-                      <a href="tel:7875695021" className="contact-link">7875695021</a>
-                      {' / '}
-                      <a href="tel:9175085911" className="contact-link">9175085911</a>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="info-item">
-                  <div className="info-icon">📍</div>
-                  <div className="info-content">
-                    <h3>Office</h3>
-                    <p>Office No. 2, 1 st floor, Shree Sadashiv Hsg. Society, Above Shravan Hotel, Ferguson college Road, Model Colony, Pune - 41101</p>
-                  </div>
-                </div>
+                {/* Optional Decorative Elements could go here if using CSS shapes */}
               </div>
-
-              {/* Map Removed as requested */}
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

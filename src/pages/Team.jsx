@@ -4,50 +4,62 @@ import './Team.css'
 
 const teamMembers = [
   {
-    name: 'Dr. Sarah Chen',
-    role: 'Director of Research',
+    name: 'Hansraj Survanyshi',
+    role: 'Co-Ordinator',
     description:
-      'Leading expert in quantitative research methodologies with 15+ years of experience in policy analysis and strategic research.',
-    image: '👩‍🔬',
+      'M. Phil in Economics, 10+ Years of Research Experience, worked with UN (United Nations), TISS (Tata Institute of Social Sciences) & GIPE (Gokhale Institute of Politics and Economics).',
+    image: '/images/hansraj-suryavanshi.jpg',
+  },
+
+  {
+    name: 'Srushti Jagtap',
+    role: 'Program Officer',
+    description: 'M.S.C Economics holder.',
+    image: '👩‍💼',
   },
   {
-    name: 'Michael Rodriguez',
-    role: 'Senior Data Analyst',
+    name: 'Adv. Rushikesh Bade',
+    role: 'Legal Advisor',
+    description: 'Legal Officer.',
+    image: '👨‍⚖️',
+  },
+  {
+    name: 'Dr. Arun Kulkarni',
+    role: 'Mentor/Advisor',
     description:
-      'Specializes in advanced statistical modeling and data visualization, transforming complex datasets into actionable insights.',
+      'Expert in Agro-Economics, Co-working with World Bank Consultant.',
+    image: '👨‍🏫',
+  },
+  {
+    name: 'Dr. Nilesh Padwal',
+    role: 'Project Co-ordinator',
+    description: 'PhD in Environmental Economics.',
+    image: '👨‍🔬',
+  },
+  {
+    name: 'Dr. Rajat Singh Yadav',
+    role: 'Data Analysis Expert',
+    description: 'PhD in Economics.',
     image: '👨‍💻',
   },
   {
-    name: 'Dr. Priya Sharma',
-    role: 'Sustainability Research Lead',
-    description:
-      'Environmental scientist focused on sustainable development research and climate adaptation strategies.',
-    image: '👩‍🔬',
+    name: 'Dr. Anirudh More',
+    role: 'Agricultural Economist',
+    description: 'PhD in Economics.',
+    image: '👨‍🌾',
   },
   {
-    name: 'James Thompson',
-    role: 'Strategic Consultant',
-    description:
-      'Business strategist with expertise in organizational development and evidence-based decision-making frameworks.',
-    image: '👨‍💼',
-  },
-  {
-    name: 'Dr. Aisha Patel',
-    role: 'Research Methodology Expert',
-    description:
-      'Academic researcher specializing in mixed-methods research design and program evaluation.',
-    image: '👩‍🏫',
-  },
-  {
-    name: 'David Kim',
-    role: 'Data Collection Specialist',
-    description:
-      'Expert in survey design, field research, and qualitative data collection across diverse contexts.',
-    image: '👨‍💼',
+    name: 'A.N. Alawali',
+    role: 'Water Development Expert',
+    description: 'Ex-Chief Engineer of Maharashtra.',
+    image: '👷‍♂️',
   },
 ]
 
 const Team = () => {
+  const featuredMember = teamMembers[0]
+  const otherMembers = teamMembers.slice(1)
+
   return (
     <div className="team-page">
       <section className="team-hero section">
@@ -67,10 +79,36 @@ const Team = () => {
         </div>
       </section>
 
+      {/* Featured Member Section */}
+      <section className="team-featured-section section">
+        <div className="container">
+          <motion.div
+            className="team-featured-card"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="featured-image-container">
+              <img
+                src={featuredMember.image}
+                alt={featuredMember.name}
+                className="featured-member-photo"
+              />
+            </div>
+            <div className="featured-info">
+              <h2 className="featured-name">{featuredMember.name}</h2>
+              <p className="featured-role">{featuredMember.role}</p>
+              <p className="featured-description">{featuredMember.description}</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section className="team-grid-section section">
         <div className="container">
           <div className="team-grid">
-            {teamMembers.map((member, index) => (
+            {otherMembers.map((member, index) => (
               <motion.div
                 key={index}
                 className="team-card"
@@ -80,9 +118,6 @@ const Team = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
-                <div className="team-image">
-                  <div className="team-image-placeholder">{member.image}</div>
-                </div>
                 <div className="team-info">
                   <h3 className="team-name">{member.name}</h3>
                   <p className="team-role">{member.role}</p>
