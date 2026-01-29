@@ -33,13 +33,13 @@ const WhyChooseSatyah = () => {
                         <span className="editorial-label">OUR APPROACH</span>
                         <div className="text-content-wrapper">
                             <p className="primary-text">
-                                SATYAH Research & Consultancy stands out as a trusted partner for organizations seeking clarity, credibility, and impact. Our work is driven by rigorous research, innovative thinking, and a deep understanding of sector-specific challenges.
+                                SATYAH Research & Consultancy provides expert research solutions tailored to your business needs. Our experienced team delivers strategic, data-driven insights with integrity and precision.
                             </p>
                             <p className="secondary-text">
-                                With a seasoned multidisciplinary team and a customized engagement approach, SATYAH delivers purpose-built methodologies and insights. We uphold the highest standards of ethics, confidentiality, and analytical rigor while ensuring timely delivery.
+                                We combine industry expertise with customized methodologies to ensure timely, impactful results. Beyond delivering exceptional research, we're committed to catalyzing positive change and supporting initiatives that create lasting value for businesses and communities alike.
                             </p>
                             <p className="tertiary-text">
-                                At SATYAH, research is not just analysis — it is a responsibility. Every engagement is approached with rigor, integrity, and a long-term perspective.
+                                Our client-centric approach ensures transparent communication and alignment at every project stage. Partner with us to transform challenges into opportunities for sustainable growth.
                             </p>
                         </div>
                     </div>

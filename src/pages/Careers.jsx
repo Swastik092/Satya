@@ -7,6 +7,8 @@ const Careers = () => {
         name: '',
         email: '',
         phone: '',
+        qualification: '',
+        experience: '',
         jobType: 'Internship',
         linkedin: ''
     })
@@ -27,14 +29,16 @@ const Careers = () => {
         setIsSubmitting(true)
         setSubmitStatus(null)
 
-        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf_wF1hDbVAm_zZpsBlB292qDD_FyulolP1EuZvLtJtGNt9fw/formResponse'
+        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdRXuQaDRN19aV0C1FqkhSzchOXw0WE3-JqfUyarzmYpdHm9w/formResponse'
 
         const formBody = new FormData()
-        formBody.append('entry.1414039973', formData.name)
-        formBody.append('entry.1384865087', formData.email)
-        formBody.append('entry.1881629800', formData.phone)
-        formBody.append('entry.327626644', formData.jobType)
-        formBody.append('entry.1411163976', formData.linkedin)
+        formBody.append('entry.1810266826', formData.name)
+        formBody.append('entry.1674509327', formData.email)
+        formBody.append('entry.1521215244', formData.phone)
+        formBody.append('entry.680196200', formData.qualification)
+        formBody.append('entry.547342027', formData.experience)
+        formBody.append('entry.773464392', formData.jobType)
+        formBody.append('entry.1747510109', formData.linkedin)
 
         try {
             await fetch(GOOGLE_FORM_ACTION_URL, {
@@ -49,6 +53,8 @@ const Careers = () => {
                 name: '',
                 email: '',
                 phone: '',
+                qualification: '',
+                experience: '',
                 jobType: 'Internship',
                 linkedin: ''
             })
@@ -61,6 +67,8 @@ const Careers = () => {
             setIsSubmitting(false)
         }
     }
+
+
 
     const jobOpenings = [
         {
@@ -179,6 +187,34 @@ const Careers = () => {
                                     required
                                     className="form-input"
                                     placeholder="+91 99999 99999"
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="qualification">Qualification *</label>
+                                <input
+                                    type="text"
+                                    id="qualification"
+                                    name="qualification"
+                                    value={formData.qualification}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                    placeholder="Highest Degree / Qualification"
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="experience">Experience *</label>
+                                <input
+                                    type="text"
+                                    id="experience"
+                                    name="experience"
+                                    value={formData.experience}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                    placeholder="Years of experience (e.g. Fresher, 2 years)"
                                 />
                             </div>
 

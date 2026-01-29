@@ -2,6 +2,104 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Projects.css'
 
+const ProjectCard = ({ project, onClick }) => (
+  <motion.div
+    className="project-card clickable"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    onClick={onClick}
+    whileHover={{ y: -5 }}
+  >
+    <div className="project-card-header">
+      <div className="project-logo-container">
+        {project.logo && (project.logo.startsWith('/') || project.logo.startsWith('http')) ? (
+          <img src={project.logo} alt={`${project.client} logo`} className="project-logo-img" />
+        ) : (
+          <span className="project-logo-emoji">{project.logo}</span>
+        )}
+      </div>
+      <div className="project-status">{project.status}</div>
+    </div>
+    <h3 className="project-title">{project.title}</h3>
+    <span className="project-category">{project.category}</span>
+    <p className="project-description">{project.description}</p>
+  </motion.div>
+)
+
+const ProjectModal = ({ project, onClose }) => {
+  if (!project) return null
+
+  return (
+    <motion.div
+      className="project-modal-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      transition={{ duration: 0.3 }}
+    >
+      <motion.div
+        className="project-modal-content"
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        onClick={e => e.stopPropagation()}
+      >
+        <button className="close-modal" onClick={onClose}>
+          &times;
+        </button>
+
+        <div className="modal-header">
+          <div className="modal-logo-wrapper">
+            {project.logo && (project.logo.startsWith('/') || project.logo.startsWith('http')) ? (
+              <img src={project.logo} alt={`${project.client} logo`} className="modal-logo-img" />
+            ) : (
+              <span className="modal-logo-emoji">{project.logo}</span>
+            )}
+          </div>
+          <div className="modal-meta-right">
+            <span className="modal-category">{project.category}</span>
+            <div className="modal-status">{project.status}</div>
+          </div>
+        </div>
+
+        <h2 className="modal-title">{project.title}</h2>
+        <p className="modal-description">{project.description}</p>
+
+        <div className="modal-details">
+          {project.client && (
+            <div className="detail-item">
+              <span className="detail-label">Client</span>
+              <span className="detail-value">{project.client}</span>
+            </div>
+          )}
+          {project.duration && (
+            <div className="detail-item">
+              <span className="detail-label">Duration</span>
+              <span className="detail-value">{project.duration}</span>
+            </div>
+          )}
+          {project.location && (
+            <div className="detail-item">
+              <span className="detail-label">Location</span>
+              <span className="detail-value">{project.location}</span>
+            </div>
+          )}
+          {project.sampleSize && (
+            <div className="detail-item">
+              <span className="detail-label">Sample Size</span>
+              <span className="detail-value">{project.sampleSize}</span>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 const Projects = () => {
   const ongoingProjects = [
     {
@@ -13,7 +111,8 @@ const Projects = () => {
       client: 'Shripati Shastri Research Institute, Pune',
       duration: '2025-26',
       location: 'Maharashtra and Gujarat',
-      sampleSize: '3000'
+      sampleSize: '3000',
+      logo: '🎨'
     },
     {
       id: 2,
@@ -24,7 +123,8 @@ const Projects = () => {
       client: 'Lighthouse, Pune',
       duration: '2026',
       location: 'Hyderabad, Telangana',
-      sampleSize: '1200'
+      sampleSize: '1200',
+      logo: '💡'
     },
     {
       id: 3,
@@ -35,7 +135,8 @@ const Projects = () => {
       client: 'SPPU, Pune',
       duration: '2026',
       location: 'PMC & PCMC',
-      sampleSize: '300 schools & classes'
+      sampleSize: '300 schools & classes',
+      logo: '/partners/Savitribai_Phule_Pune_University-removebg-preview.png'
     },
     {
       id: 16,
@@ -46,7 +147,8 @@ const Projects = () => {
       client: 'North Maharashtra University',
       duration: '2026',
       location: 'Maharashtra',
-      sampleSize: '4500'
+      sampleSize: '4500',
+      logo: '🏪'
     }
   ]
 
@@ -60,7 +162,8 @@ const Projects = () => {
       client: 'World Bank',
       duration: '2024-25',
       location: 'Maharashtra',
-      sampleSize: '880'
+      sampleSize: '880',
+      logo: '/partners/WORLD_BANK_GROUP-removebg-preview.png'
     },
     {
       id: 5,
@@ -71,7 +174,8 @@ const Projects = () => {
       client: 'Tapasya',
       duration: '2025',
       location: 'Pune',
-      sampleSize: 'Secondary Data Based'
+      sampleSize: 'Secondary Data Based',
+      logo: '🏷️'
     },
     {
       id: 6,
@@ -82,7 +186,8 @@ const Projects = () => {
       client: 'ICRISAT',
       duration: '2020-2021',
       location: 'Various villages in Maharashtra',
-      sampleSize: '600'
+      sampleSize: '600',
+      logo: '/partners/ICIRSAT-removebg-preview.png'
     },
     {
       id: 7,
@@ -93,7 +198,8 @@ const Projects = () => {
       client: 'TATA Group’s Booker Wholesale Company',
       duration: '2021-2022',
       location: 'Pune',
-      sampleSize: '150'
+      sampleSize: '150',
+      logo: '🏢'
     },
     {
       id: 8,
@@ -104,7 +210,8 @@ const Projects = () => {
       client: 'Sir Parshurambhau Mahavidyalaya, Pune',
       duration: '2023-2024',
       location: 'Solapur, Pune, Ahmednagar, Satara, Sangali, Kolhapur',
-      sampleSize: '3000'
+      sampleSize: '3000',
+      logo: '🎓'
     },
     {
       id: 9,
@@ -115,7 +222,8 @@ const Projects = () => {
       client: 'Shri Balaji University, Pune',
       duration: '2024-2025',
       location: 'PCMC Area, Maharashtra',
-      sampleSize: '2500'
+      sampleSize: '2500',
+      logo: '🏫'
     },
     {
       id: 10,
@@ -126,7 +234,8 @@ const Projects = () => {
       client: 'National Insurance Academy, Pune',
       duration: '2025',
       location: 'Pune District',
-      sampleSize: '1000'
+      sampleSize: '1000',
+      logo: '🛡️'
     },
     {
       id: 11,
@@ -137,7 +246,8 @@ const Projects = () => {
       client: 'SYMBIOSIS',
       duration: '2023-24',
       location: 'Maharashtra',
-      sampleSize: '1500'
+      sampleSize: '1500',
+      logo: '/partners/Symbiosis-removebg-preview.png'
     },
     {
       id: 12,
@@ -148,7 +258,8 @@ const Projects = () => {
       client: 'GIPE',
       duration: '2024-2025',
       location: 'Kishan Exhibition, Mulshi',
-      sampleSize: '1000'
+      sampleSize: '1000',
+      logo: '/partners/GIPE-removebg-preview.png'
     },
     {
       id: 13,
@@ -159,7 +270,8 @@ const Projects = () => {
       client: 'GIPE (Centre of Sustainable Development)',
       duration: '2022-2023',
       location: 'Pune',
-      sampleSize: 'Village census'
+      sampleSize: 'Village census',
+      logo: '/partners/GIPE-removebg-preview.png'
     },
     {
       id: 14,
@@ -170,7 +282,8 @@ const Projects = () => {
       client: 'Centre of Studies in Social Sciences Pune (CSSS)',
       duration: '2024',
       location: 'Palghar',
-      sampleSize: '2 schools, 4 Anganwadis'
+      sampleSize: '2 schools, 4 Anganwadis',
+      logo: '📊'
     },
     {
       id: 15,
@@ -181,91 +294,12 @@ const Projects = () => {
       client: 'National Insurance Agency',
       duration: '2025-2026',
       location: 'Pune',
-      sampleSize: '500'
+      sampleSize: '500',
+      logo: '📄'
     }
   ]
 
   const [selectedProject, setSelectedProject] = useState(null)
-
-  const ProjectCard = ({ project }) => (
-    <motion.div
-      className="project-card clickable"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      onClick={() => setSelectedProject(project)}
-      whileHover={{ y: -5 }}
-    >
-      <div className="project-status">{project.status}</div>
-      <h3 className="project-title">{project.title}</h3>
-      <span className="project-category">{project.category}</span>
-      <p className="project-description">{project.description}</p>
-    </motion.div>
-  )
-
-  const ProjectModal = ({ project, onClose }) => {
-    if (!project) return null
-
-    return (
-      <motion.div
-        className="project-modal-overlay"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-        transition={{ duration: 0.3 }}
-      >
-        <motion.div
-          className="project-modal-content"
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          onClick={e => e.stopPropagation()}
-        >
-          <button className="close-modal" onClick={onClose}>
-            &times;
-          </button>
-
-          <div className="modal-header">
-            <span className="modal-category">{project.category}</span>
-            <div className="modal-status">{project.status}</div>
-          </div>
-
-          <h2 className="modal-title">{project.title}</h2>
-          <p className="modal-description">{project.description}</p>
-
-          <div className="modal-details">
-            {project.client && (
-              <div className="detail-item">
-                <span className="detail-label">Client</span>
-                <span className="detail-value">{project.client}</span>
-              </div>
-            )}
-            {project.duration && (
-              <div className="detail-item">
-                <span className="detail-label">Duration</span>
-                <span className="detail-value">{project.duration}</span>
-              </div>
-            )}
-            {project.location && (
-              <div className="detail-item">
-                <span className="detail-label">Location</span>
-                <span className="detail-value">{project.location}</span>
-              </div>
-            )}
-            {project.sampleSize && (
-              <div className="detail-item">
-                <span className="detail-label">Sample Size</span>
-                <span className="detail-value">{project.sampleSize}</span>
-              </div>
-            )}
-          </div>
-        </motion.div>
-      </motion.div>
-    )
-  }
 
   return (
     <div className="projects-page">
@@ -293,7 +327,11 @@ const Projects = () => {
           </div>
           <div className="projects-grid">
             {ongoingProjects.map(project => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onClick={() => setSelectedProject(project)}
+              />
             ))}
           </div>
         </div>
@@ -306,7 +344,11 @@ const Projects = () => {
           </div>
           <div className="projects-grid">
             {completedProjects.map(project => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onClick={() => setSelectedProject(project)}
+              />
             ))}
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import TeamList from '../components/TeamList'
 import './About.css'
 
 // Icons for Part C (Pillars)
@@ -57,7 +58,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* PART B: NARRATIVE SPLIT */}
       {/* PART B: NARRATIVE SPLIT */}
       <section className="about-narrative-section">
         <div className="container">
@@ -121,6 +121,9 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* MEET THE TEAM SECTION */}
+      <TeamList showTitle={true} />
 
       {/* PART D: CTA SECTION */}
       <section className="about-cta-section">

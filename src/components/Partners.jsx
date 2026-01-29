@@ -93,18 +93,11 @@ const realPartners = [
     id: '102',
     name: 'ICRISAT',
     logo: '/partners/ICIRSAT-removebg-preview.png',
-    project: 'Agricultural Innovation',
-    description: 'Joint research initiatives focused on sustainable agriculture and food security in semi-arid tropics.',
-    impact: 'Empowering dryland farmers'
+    project: 'Sorghum Productivity Cost Analysis',
+    description: 'Assessment of sorghum cultivation productivity, cost, and carbon emissions.',
+    impact: 'Location: Various villages in Maharashtra | Sample Size: 600 | Duration: 2020-21'
   },
-  {
-    id: '103',
-    name: 'ICSSR',
-    logo: '/partners/ICSSR-removebg-preview.png',
-    project: 'Social Science Research',
-    description: 'Supporting interdisciplinary research methodology and policy analysis.',
-    impact: 'Advancing social sciences'
-  },
+
   {
     id: '104',
     name: 'PhonePe',
@@ -117,25 +110,25 @@ const realPartners = [
     id: '105',
     name: 'Savitribai Phule Pune University',
     logo: '/partners/Savitribai_Phule_Pune_University-removebg-preview.png',
-    project: 'Academic Excellence',
-    description: 'Partnership for curriculum development and advanced research programs.',
-    impact: 'Fostering future leaders'
+    project: 'Future Science Champ Program',
+    description: 'Encouraging students (6-12th grade) to enrich their interest in the science field.',
+    impact: 'Location: PMC & PCMC | Sample Size: 300 schools & classes | Duration: 2026'
   },
   {
     id: '106',
     name: 'Symbiosis International University',
     logo: '/partners/Symbiosis-removebg-preview.png',
-    project: 'International Collaboration',
-    description: 'Facilitating global exchange programs and cross-border research initiatives.',
-    impact: 'Bridging global education'
+    project: 'Pradhan Mantri Fasal Bima Yojna (PMFBY)',
+    description: 'Short term empirical research project impact of PMFBY On social-economic development of farmers.',
+    impact: 'Sample Size: 1500 | Duration: 2023-24'
   },
   {
     id: '107',
     name: 'World Bank Group',
     logo: '/partners/WORLD_BANK_GROUP-removebg-preview.png',
-    project: 'Global Development',
-    description: 'Working together on poverty reduction strategies and sustainable development goals.',
-    impact: 'Driving global change'
+    project: 'UMED Empower HER Program',
+    description: 'Enhance productivity and financial management in women-led MSMEs through training on digital bookkeeping.',
+    impact: 'Location: Maharashtra | Sample Size: 880 | Duration: 2024-25'
   },
 ]
 
