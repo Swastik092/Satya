@@ -31,6 +31,13 @@ const Icons = {
       <path d="M12 14.17v7.83" />
     </svg>
   )
+  ,
+  PanIndia: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+      <circle cx="12" cy="9" r="2.5" />
+    </svg>
+  )
 }
 
 const About = () => {
@@ -117,6 +124,12 @@ const About = () => {
               <div className="pillar-icon"><Icons.Sustainability /></div>
               <h4 className="pillar-title">Sustainable Development</h4>
               <p className="pillar-desc">Prioritizing long-term economic, social, and environmental balance.</p>
+            </motion.div>
+
+            <motion.div className="pillar-card" whileHover={{ y: -5 }}>
+              <div className="pillar-icon"><Icons.PanIndia /></div>
+              <h4 className="pillar-title">PAN India Services</h4>
+              <p className="pillar-desc">Delivering professional research and consultancy services across the nation with precision and excellence.</p>
             </motion.div>
           </div>
         </div>

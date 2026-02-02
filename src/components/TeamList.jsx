@@ -53,6 +53,12 @@ const teamMembers = [
         description: 'Ex-Chief Engineer of Maharashtra.',
         image: '👷‍♂️',
     },
+    {
+        name: 'Ruchi Agarwal',
+        role: 'Research Assistant',
+        description: 'Research Assistant at SATYAH.',
+        image: '👩‍💼',
+    },
 ]
 
 const TeamList = ({ showTitle = true }) => {

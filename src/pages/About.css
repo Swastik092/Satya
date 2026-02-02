@@ -142,6 +142,13 @@
   gap: 32px;
 }
 
+@media (min-width: 1024px) {
+  .pillars-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+}
+
 .pillar-card {
   background: #F8FAFC;
   /* Off-white */
