@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap');
+
 /* ============================================
    STRUCTURE & LAYOUT
    ============================================ */
@@ -82,7 +84,7 @@
   max-width: 650px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap');
+
 
 /* TYPOGRAPHY - USING ORIGINAL BRAND VARIABLES */
 .hero-motto {

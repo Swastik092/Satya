@@ -227,7 +227,7 @@ const Contact = () => {
                       <h3>Office</h3>
                       <p>
                         Office No. 2, 1st Floor, Shree Sadashiv Hsg. Society,
-                        Above Shravan Hotel, Ferguson College Road,
+                        Above Shravan Hotel, Fergusson College Road,
                         Model Colony, Pune - 41101
                       </p>
                     </div>

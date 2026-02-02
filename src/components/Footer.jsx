@@ -75,7 +75,7 @@ const Footer = () => {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>Office No. 2, 1 st floor, Shree Sadashiv Hsg. Society, Above Shravan Hotel, Ferguson college Road, Model Colony, Pune - 41101</span>
+                <span>Office No. 2, 1 st floor, Shree Sadashiv Hsg. Society, Above Shravan Hotel, Fergusson College Road, Model Colony, Pune - 41101</span>
               </li>
               <li className="contact-item">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="contact-icon">

@@ -30,8 +30,7 @@ const Icons = {
       <path d="M2 22h20" />
       <path d="M12 14.17v7.83" />
     </svg>
-  )
-  ,
+  ),
   PanIndia: () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
