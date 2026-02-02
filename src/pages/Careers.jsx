@@ -70,24 +70,75 @@ const Careers = () => {
 
 
 
-    const jobOpenings = [
+    // Icons as clean SVGs
+    const Icons = {
+        innovation: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"></path>
+                <path d="M9 21h6"></path>
+            </svg>
+        ),
+        rocket: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+            </svg>
+        ),
+        users: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+        ),
+        globe: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+        ),
+        clock: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+        )
+    }
+
+    const perks = [
         {
             id: 1,
-            title: "Data Analyst Intern",
-            type: "Internship",
-            description: "Join our analytics team to help process and interpret complex datasets for social impact projects."
+            title: "Innovation First",
+            icon: Icons.innovation,
+            description: "Work on cutting-edge research and data-driven projects that challenge the status quo."
         },
         {
             id: 2,
-            title: "Senior Research Consultant",
-            type: "Full-time",
-            description: "Lead research initiatives and provide data-backed strategic consulting for our partners."
+            title: "Growth Culture",
+            icon: Icons.rocket,
+            description: "Continuous learning opportunities through workshops, mentorship, and hands-on field experience."
         },
         {
             id: 3,
-            title: "Frontend Developer",
-            type: "Full-time",
-            description: "Build and maintain responsive web applications that visualize our data and research findings."
+            title: "Collaborative Environment",
+            icon: Icons.users,
+            description: "A supportive, inclusive team where every voice is valued and diverse perspectives drive solutions."
+        },
+        {
+            id: 4,
+            title: "Impactful Work",
+            icon: Icons.globe,
+            description: "Contribute directly to projects that drive tangible social change and community development."
+        },
+        {
+            id: 5,
+            title: "Flexible Work",
+            icon: Icons.clock,
+            description: "We believe in output over hours. Enjoy a flexible work culture that respects your work-life balance."
         }
     ]
 
@@ -117,22 +168,26 @@ const Careers = () => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                     >
-                        Current Openings
+                        Perks of Joining SATYAH
                     </motion.h2>
 
                     <div className="jobs-grid">
-                        {jobOpenings.map((job, index) => (
+                        {perks.map((perk, index) => (
                             <motion.div
-                                key={job.id}
-                                className="job-card"
+                                key={perk.id}
+                                className="job-card perk-card"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
                             >
-                                <h3 className="job-title">{job.title}</h3>
-                                <span className="job-type">{job.type}</span>
-                                <p className="job-description">{job.description}</p>
+                                <div className="perk-header">
+                                    <div className="perk-icon-wrapper">
+                                        {perk.icon}
+                                    </div>
+                                    <h3 className="job-title perk-title">{perk.title}</h3>
+                                </div>
+                                <p className="job-description">{perk.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -214,7 +269,7 @@ const Careers = () => {
                                     onChange={handleChange}
                                     required
                                     className="form-input"
-                                    placeholder="Years of experience (e.g. Fresher, 2 years)"
+                                    placeholder="Write NA if no experience"
                                 />
                             </div>
 

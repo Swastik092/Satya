@@ -114,6 +114,44 @@
 }
 
 /* Application Form Section */
+.perk-card {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.perk-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.perk-icon-wrapper {
+    background: rgba(58, 90, 138, 0.1);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--color-professional-blue);
+    /* Icon color */
+}
+
+.perk-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2px;
+}
+
+.perk-title {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+}
+
+/* Application Form Section */
 .application-section {
     max-width: 700px;
     margin: 0 auto;

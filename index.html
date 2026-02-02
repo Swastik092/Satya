@@ -15,7 +15,7 @@
     // Set theme immediately to prevent flash of white
     (function () {
       const saved = localStorage.getItem('theme');
-      const theme = saved || 'dark'; // Default to dark mode
+      const theme = 'light'; // Force light mode as designed
       document.documentElement.setAttribute('data-theme', theme);
       // Set background color immediately
       document.documentElement.style.backgroundColor = theme === 'dark' ? '#0A0E1A' : '#E8F2F8';
