@@ -9,19 +9,6 @@ const teamMembers = [
             'M. Phil in Economics, 10+ Years of Research Experience, worked with UN (United Nations), TISS (Tata Institute of Social Sciences) & GIPE (Gokhale Institute of Politics and Economics).',
         image: '/images/hansraj-suryavanshi.jpg',
     },
-
-    {
-        name: 'Srushti Jagtap',
-        role: 'Program Officer',
-        description: 'M.S.C Economics holder.',
-        image: '👩‍💼',
-    },
-    {
-        name: 'Adv. Hrishikesh Bade',
-        role: 'Legal Advisor',
-        description: 'Legal Officer.',
-        image: '👨‍⚖️',
-    },
     {
         name: 'Dr. Arun Kulkarni',
         role: 'Mentor/Advisor',
@@ -30,31 +17,43 @@ const teamMembers = [
         image: '👨‍🏫',
     },
     {
+        name: 'Adv. Hrishikesh Bade',
+        role: 'Legal Advisor',
+        description: 'Legal Officer.',
+        image: '👨‍⚖️',
+    },
+    {
+        name: 'Dr. Rajat Singh Yadav',
+        role: 'Research Consultant',
+        description: 'PhD in Economics.',
+        image: '👨‍💻',
+    },
+    {
         name: 'Dr. Nilesh Padwal',
         role: 'Project Co-ordinator',
         description: 'PhD in Economics.',
         image: '👨‍🔬',
     },
     {
-        name: 'Dr. Rajat Singh Yadav',
-        role: 'Data Analysis Expert',
-        description: 'PhD in Economics.',
-        image: '👨‍💻',
-    },
-    {
         name: 'Dr. Anirudha More',
-        role: 'Agricultural Economist',
+        role: 'Research Expertise',
         description: 'PhD in Economics.',
         image: '👨‍🌾',
     },
     {
-        name: 'A.N. Alawali',
-        role: 'Water Development Expert',
+        name: 'Shri. A.N. Alawali',
+        role: 'Research Expertise',
         description: 'Ex-Chief Engineer of Maharashtra.',
         image: '👷‍♂️',
     },
     {
-        name: 'Ruchi Agarwal',
+        name: 'Ms. Srushti Jagtap',
+        role: 'Research Associate',
+        description: 'M.S.C Economics holder.',
+        image: '👩‍💼',
+    },
+    {
+        name: 'Ms. Ruchi Agarwal',
         role: 'Research Assistant',
         description: 'Research Assistant at SATYAH.',
         image: '👩‍💼',
